@@ -1,9 +1,13 @@
 package org.generation.italy.demo;
 
+import java.time.LocalDate;
+
 import org.generation.italy.demo.pojo.Drink;
 import org.generation.italy.demo.pojo.Pizza;
+import org.generation.italy.demo.pojo.Promo;
 import org.generation.italy.demo.service.DrinkService;
 import org.generation.italy.demo.service.PizzaService;
+import org.generation.italy.demo.service.PromoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -16,6 +20,8 @@ public class SpringLaMiaPizzeriaCrudApplication implements CommandLineRunner{
 	private PizzaService pizzaService;
 	@Autowired
 	private DrinkService drinkService;
+	@Autowired
+	private PromoService promoService;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(SpringLaMiaPizzeriaCrudApplication.class, args);
@@ -24,9 +30,14 @@ public class SpringLaMiaPizzeriaCrudApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		
-		Pizza p1 = new Pizza("Margherita", "buona", 5);
-		Pizza p2 = new Pizza("Diavola", "buonissima", 7);
-		Pizza p3 = new Pizza("Capricciosa", "non buona", 8);
+		
+		Promo pr1 = new Promo("Christmas Promo", LocalDate.now(), LocalDate.now().plusDays(15));
+		
+		promoService.save(pr1);
+		
+		Pizza p1 = new Pizza("Margherita", "buona", 10, pr1);
+		Pizza p2 = new Pizza("Diavola", "buonissima", 8, pr1);
+		Pizza p3 = new Pizza("Capricciosa", "non buona", 4, null);
 		
 		pizzaService.save(p1);
 		pizzaService.save(p2);
@@ -42,3 +53,14 @@ public class SpringLaMiaPizzeriaCrudApplication implements CommandLineRunner{
 		drinkService.saveDrinks(d3);
 	}
 }
+
+
+
+
+
+
+
+
+
+
+

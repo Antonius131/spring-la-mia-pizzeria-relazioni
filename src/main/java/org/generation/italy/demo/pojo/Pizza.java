@@ -7,7 +7,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
@@ -23,7 +25,7 @@ public class Pizza implements PriceableInt{
 	private int id;
 	
 	@NotEmpty(message="il nome della pizza non può essere vuoto")
-	@Column
+	@Column(unique = true)
 	private String name;
 	
 	@Column
@@ -34,13 +36,18 @@ public class Pizza implements PriceableInt{
 	@NotNull(message = "inserire il prezzo")
 	@Min(value=1, message="Il prezzo non può essere inferiore a 1€")
 	private int price;
-
+	
+	@ManyToOne
+	@JoinColumn(name = "promo_id", nullable = true)
+	private Promo promo;
+	
 	public Pizza() {}
-	public Pizza(String name, String description, int price) {
+	public Pizza(String name, String description, int price, Promo promo) {
 	
 		setName(name);
 		setDescription(description);
 		setPrice(price);
+		setPromo(promo);
 	}
 
 	
@@ -64,7 +71,15 @@ public class Pizza implements PriceableInt{
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
+	
+	public Promo getPromo() {
+		return promo;
+	}
+	public void setPromo(Promo promo) {
+		this.promo = promo;
+	}
+	
+	
 	@Override
 	public int getPrice() {
 		return price;
