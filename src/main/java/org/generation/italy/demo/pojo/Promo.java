@@ -3,6 +3,7 @@ package org.generation.italy.demo.pojo;
 import java.time.LocalDate;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -34,7 +35,7 @@ public class Promo {
 	private LocalDate endDate;
 	
 	
-	@OneToMany(mappedBy = "promo")
+	@OneToMany(mappedBy = "promo", cascade = CascadeType.REMOVE)
 	private List<Pizza> pizzas;
 	
 	public Promo(){}

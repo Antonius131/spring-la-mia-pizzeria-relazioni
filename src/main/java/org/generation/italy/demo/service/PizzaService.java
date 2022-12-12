@@ -8,7 +8,6 @@ import org.generation.italy.demo.repository.PizzaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
 @Service
 public class PizzaService {
 
