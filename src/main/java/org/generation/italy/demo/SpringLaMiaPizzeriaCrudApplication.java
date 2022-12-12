@@ -41,10 +41,12 @@ public class SpringLaMiaPizzeriaCrudApplication implements CommandLineRunner{
 		Pizza p1 = new Pizza("Margherita", "buona", 10, pr1);
 		Pizza p2 = new Pizza("Diavola", "buonissima", 8, pr2);
 		Pizza p3 = new Pizza("Capricciosa", "non buona", 4, null);
+		Pizza p4 = new Pizza("4 formaggi", "wow che buona", 8, pr2);
 		
 		pizzaService.save(p1);
 		pizzaService.save(p2);
 		pizzaService.save(p3);
+		pizzaService.save(p4);
 		
 		
 		Drink d1 = new Drink("Gin tonic", "e vabbè..", 4);
@@ -54,22 +56,6 @@ public class SpringLaMiaPizzeriaCrudApplication implements CommandLineRunner{
 		drinkService.saveDrinks(d1);
 		drinkService.saveDrinks(d2);
 		drinkService.saveDrinks(d3);
-		
-		
-		
-		
-		// Delete promotion and pizza
-		
-//		promoService.deletePromoById(1);
-//		pizzaService.deletePizzaById(1);
-		
-		
-		List<Pizza> pizzasList = pizzaService.findAll();
-		
-		for (Pizza p : pizzasList) {
-			
-			System.out.println(p + "\n\t" + p.getPromo());
-		}
 		
 		
 		

@@ -99,6 +99,6 @@ public class Pizza implements PriceableInt{
 				+ " - " 
 				+ getDescription() 
 				+ " - " 
-				+ getPrice() + "$";
+				+ getPrice() + "€";
 	}
 }
