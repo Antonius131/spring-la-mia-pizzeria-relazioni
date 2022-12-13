@@ -59,12 +59,12 @@ public class SpringLaMiaPizzeriaCrudApplication implements CommandLineRunner{
 		
 		
 		
-		List<Promo> promosList = promoService.findPromosWPizza();
-		
-		for (Promo pr : promosList) {
-			
-			System.out.println(pr + "\n\t" + pr.getPizzas());
-		}
+//		List<Promo> promosList = promoService.findPromosWPizza();
+//		
+//		for (Promo pr : promosList) {
+//			
+//			System.out.println(pr + "\n\t" + pr.getPizzas());
+//		}
 	}
 }
 
