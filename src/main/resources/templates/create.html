@@ -9,14 +9,38 @@
 	<h1>Aggiungi una nuova pizza</h1>
 	<form method="POST" action="/create" th:object="${pizza}">
 		<label>Nome</label><br>
-		<input type="text" name="name" th:field="*{name}">
+		<input type="text" name="name" th:field="*{name}">		
 		<br>
+		
 		<label>Descrizione</label><br>
 		<textarea name="description" th:field="*{description}"></textarea>
 		<br>
+		
 		<label>Prezzo</label><br>
 		<input type="number" name="price" th:field="*{price}">
 		<br>
+		
+		<label>Promozione</label>
+		<br>
+		<select name="promo" style="margin-bottom: 12px">
+			<option
+				th:value="null"
+				th:field="${pizza.promo}"
+			>
+				-
+			</option>
+			<option
+				th:each="promo : ${promos}"
+				th:object="${promo}"
+				
+				th:value="*{id}"
+				th:field="${pizza.promo}"
+			>
+				[[*{title}]]
+			</option>
+		</select>
+		<br>
+		
 		<button type="submit">Aggiungi</button>
 	</form>
 	<div th:if="${errors}" class="col-12">
