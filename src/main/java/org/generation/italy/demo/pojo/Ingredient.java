@@ -1,19 +1,16 @@
 package org.generation.italy.demo.pojo;
 
-import java.util.Arrays;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
-
 @Entity
 @Table
 public class Ingredient {
@@ -26,21 +23,30 @@ public class Ingredient {
 	@Column
 	private String name;
 	
-	@ManyToMany(mappedBy = "ingredients", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
+	@ManyToMany(mappedBy = "ingredients", cascade = CascadeType.REMOVE)
 	private List<Pizza> pizzas;
 	
 	
 	public Ingredient() {}
 	
-	public Ingredient(String name, Pizza...pizzas) {
+	public Ingredient(String name) {
 		
 		setName(name);
-		setPizzas(Arrays.asList(pizzas));
+	}
+	
+	public Ingredient(String name, List<Pizza> pizzas) {
+		
+		setName(name);
+		setPizzas(pizzas);
 	}
 	
 	
 	public int getId() {
 		return id;
+	}
+	
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 	public String getName() {
@@ -53,9 +59,8 @@ public class Ingredient {
 	public List<Pizza> getPizzas() {
 		return pizzas;
 	}
+
 	public void setPizzas(List<Pizza> pizzas) {
 		this.pizzas = pizzas;
 	}
-	
-	
 }

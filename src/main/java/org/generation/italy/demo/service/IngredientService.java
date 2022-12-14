@@ -8,7 +8,6 @@ import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
 @Service
 public class IngredientService {
 
@@ -36,5 +35,10 @@ public class IngredientService {
 		}
 		
 		return ingredients;
+	}
+	
+	public Ingredient getIngredientById(int id) {
+		
+		return ingRepo.findById(id).get();
 	}
 }

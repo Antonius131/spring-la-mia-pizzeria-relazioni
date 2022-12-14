@@ -2,22 +2,27 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Crea ingrediente</title>
+<title>Modifica ingrediente</title>
 </head>
 <body>
-	
-	<h1>Crea un nuovo ingrediente</h1>
+
+	<h1>Modifica ingrediente</h1>
 	
 	<form
-		method="POST"
-		action="/ingredients/create"
+		method="POST" 
+		action="/ingredients/edit/1"
 		th:object="${ingredient}"
 	>
-		<label>Nome ingrediente</label>
-		<br>
-		<input type="text" name="name" th:field="*{name}" />
-		<br>
+
+		<input type="number" name="id" th:field="*{id}">
+		<label>Nome</label>
+		<input 
+			type="text"
+			name="name"
 		
+			th:value="*{name}"
+			th:field="*{name}"
+		/>
 		<div
 			th:each = "pizza : ${pizzas}"
 			th:object = "${pizza}"
@@ -31,7 +36,7 @@
 			>
 			<label>[[*{name}]]</label>
 		</div>
-		<input type="submit" value="crea" />
+		<input type="submit" value="Modifica" />
 	</form>
 </body>
 </html>

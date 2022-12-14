@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -46,7 +47,7 @@ public class IngredientController {
 		return "create-ingredient";
 	}
 	
-	@PostMapping("/store")
+	@PostMapping("/create")
 	public String storeIngredient(@Valid Ingredient ingredient) {
 		
 		List<Pizza> pizzaIng = ingredient.getPizzas();
@@ -54,6 +55,41 @@ public class IngredientController {
 		for (Pizza pizza : pizzaIng) {
 			
 			pizza.getIngredients().add(ingredient);
+		}
+		
+		ingService.saveIngredient(ingredient);
+		
+		return "redirect:/ingredients";
+	}
+	
+	@GetMapping("/edit/{id}")
+	public String editIngredient(@PathVariable("id") int id, Model model) {
+		
+		Ingredient ingredient = ingService.getIngredientById(id);
+		model.addAttribute("ingredient", ingredient);
+		
+		List<Pizza> pizzas = pizzaService.findAll();
+		model.addAttribute("pizzas", pizzas);
+		
+		return "edit-ingredient";
+	}
+	
+	@PostMapping("/edit/{id}")
+	public String updateIngredient(
+			@PathVariable("id") int id,
+			@Valid Ingredient ingredient
+	) {
+		
+		Ingredient ing = ingService.getIngredientById(id);
+		
+		for (Pizza pizza : ing.getPizzas()) {
+			
+			pizza.removeIngredients(ing);
+		}
+		
+		for (Pizza pizza : ingredient.getPizzas()) {
+			
+			pizza.addIngredients(ingredient);
 		}
 		
 		ingService.saveIngredient(ingredient);

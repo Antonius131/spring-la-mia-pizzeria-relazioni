@@ -1,6 +1,5 @@
 package org.generation.italy.demo.pojo;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.generation.italy.interf.PriceableInt;
@@ -18,7 +17,6 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
-
 
 @Entity
 @Table
@@ -49,13 +47,13 @@ public class Pizza implements PriceableInt{
 	private List<Ingredient> ingredients;
 	
 	public Pizza() {}
-	public Pizza(String name, String description, int price, Promo promo, Ingredient...ingredients) {
+	public Pizza(String name, String description, int price, Promo promo, List<Ingredient> ingredients) {
 	
 		setName(name);
 		setDescription(description);
 		setPrice(price);
 		setPromo(promo);
-		setIngredients(Arrays.asList(ingredients));
+		setIngredients(ingredients);
 	}
 
 	
@@ -86,12 +84,28 @@ public class Pizza implements PriceableInt{
 	public void setPromo(Promo promo) {
 		this.promo = promo;
 	}
-	
+
 	public List<Ingredient> getIngredients() {
 		return ingredients;
 	}
 	public void setIngredients(List<Ingredient> ingredients) {
 		this.ingredients = ingredients;
+	}
+	
+	public void addIngredients(Ingredient ingredient) {
+		
+		boolean finded = false;
+		for (Ingredient i : getIngredients()) 
+			if (i.getId() == ingredient.getId())
+				finded = true;
+		
+		if (!finded) 
+			getIngredients().add(ingredient);
+	}
+	
+	public void removeIngredients(Ingredient ingredient) {
+		
+		getIngredients().remove(ingredient);
 	}
 	
 	
