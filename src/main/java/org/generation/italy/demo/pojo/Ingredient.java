@@ -3,8 +3,10 @@ package org.generation.italy.demo.pojo;
 import java.util.Arrays;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -24,7 +26,7 @@ public class Ingredient {
 	@Column
 	private String name;
 	
-	@ManyToMany(mappedBy = "ingredients")
+	@ManyToMany(mappedBy = "ingredients", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
 	private List<Pizza> pizzas;
 	
 	
@@ -34,6 +36,11 @@ public class Ingredient {
 		
 		setName(name);
 		setPizzas(Arrays.asList(pizzas));
+	}
+	
+	
+	public int getId() {
+		return id;
 	}
 	
 	public String getName() {

@@ -54,7 +54,7 @@ public class SpringLaMiaPizzeriaCrudApplication implements CommandLineRunner{
 		Pizza p1 = new Pizza("Margherita", "buona", 10, pr1, ing1, ing2, ing3);
 		Pizza p2 = new Pizza("Diavola", "buonissima", 8, pr2, ing1, ing3);
 		Pizza p3 = new Pizza("Capricciosa", "non buona", 4, null, ing1, ing2);
-		Pizza p4 = new Pizza("4 formaggi", "wow che buona", 8, pr2, ing1);
+		Pizza p4 = new Pizza("4 formaggi", "wow che buona", 8, pr2, ing1, ing4);
 		
 		pizzaService.save(p1);
 		pizzaService.save(p2);
@@ -69,7 +69,6 @@ public class SpringLaMiaPizzeriaCrudApplication implements CommandLineRunner{
 		drinkService.saveDrinks(d1);
 		drinkService.saveDrinks(d2);
 		drinkService.saveDrinks(d3);
-		
 		
 		
 		

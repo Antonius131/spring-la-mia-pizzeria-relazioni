@@ -41,6 +41,20 @@
 		</select>
 		<br>
 		
+		<div
+			th:each = "ingredient : ${ingredients}"
+			th:object = "${ingredient}"
+		>
+			<input
+				type="checkbox"
+				name="ingredients"
+				
+				th:value="*{id}"
+				th:field="${pizza.ingredients}"
+			>
+			<label>[[*{name}]]</label>
+		</div>
+		
 		<button type="submit">Aggiungi</button>
 	</form>
 	<div th:if="${errors}" class="col-12">
