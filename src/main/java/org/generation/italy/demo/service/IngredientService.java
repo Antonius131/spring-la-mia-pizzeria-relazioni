@@ -41,4 +41,9 @@ public class IngredientService {
 		
 		return ingRepo.findById(id).get();
 	}
+	
+	public void deleteIngredientById(int id) {
+		
+		ingRepo.deleteById(id);
+	}
 }

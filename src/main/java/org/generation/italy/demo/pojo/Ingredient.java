@@ -23,7 +23,7 @@ public class Ingredient {
 	@Column
 	private String name;
 	
-	@ManyToMany(mappedBy = "ingredients", cascade = CascadeType.REMOVE)
+	@ManyToMany(mappedBy = "ingredients")
 	private List<Pizza> pizzas;
 	
 	

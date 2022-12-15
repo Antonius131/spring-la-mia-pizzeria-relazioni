@@ -96,4 +96,20 @@ public class IngredientController {
 		
 		return "redirect:/ingredients";
 	}
+	
+	@GetMapping("/delete/{id}")
+	public String deleteIngredient(@PathVariable("id") int id) {
+		
+		Ingredient ing = ingService.getIngredientById(id);
+		
+		for (Pizza pizza : ing.getPizzas()) {
+			
+			pizza.removeIngredients(ing);
+		}
+		
+		ingService.deleteIngredientById(id);
+		
+		return "redirect:/ingredients";
+	}
+	
 }

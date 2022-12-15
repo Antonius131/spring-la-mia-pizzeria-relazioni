@@ -13,7 +13,10 @@
 		th:object = "${ingredient}"
 	>
 		<li>
-			[[*{name}]] - <a th:href="@{/ingredients/edit/{id}(id = 1)}"> Modifica</a>
+			[[*{name}]] - 
+			<a th:href="@{/ingredients/edit/{id}(id = *{id})}"> Modifica</a>
+			<span>-</span>
+			<a th:href="@{/ingredients/delete/{id}(id = *{id})}"> Elimina</a>
 			<ul>
 				<li>
 					[[*{pizzas}]] -
